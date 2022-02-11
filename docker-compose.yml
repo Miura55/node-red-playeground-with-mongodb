@@ -1,0 +1,39 @@
+version: '3.1'
+networks:
+  nodered_network:
+services:
+  nodered:
+    image: nodered/node-red
+    volumes:
+      - ./nodered:/data
+    ports:
+      - "1880:1880"
+    depends_on:
+      - mongodb
+    environment:
+      - NODE_RED_PASSWORD=${NODE_RED_PASSWORD}
+
+  mongodb:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodb/db:/data/db
+      - ./mongodb/configdb:/data/configdb
+      - ./mongodb/tmp:/tmp
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongodb
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      ME_CONFIG_MONGODB_SERVER: mongodb
