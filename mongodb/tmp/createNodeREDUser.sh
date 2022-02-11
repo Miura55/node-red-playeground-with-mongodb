@@ -5,6 +5,11 @@ if [ ! -n "$1" ]; then
 	exit 1
 fi
 
+until mongo --quiet --host mongodb -u "root" -p "admin" --authenticationDatabase 'admin'; do
+	echo 2>&1 "MongoDB is unavailable - sleeping"
+	sleep 1
+done
+
 # create database
 mongo --quiet --host mongodb -u "root" -p "admin" --authenticationDatabase 'admin' <<EOT
 use $1
