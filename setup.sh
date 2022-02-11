@@ -16,6 +16,6 @@ echo "NODE_RED_PASSWORD='${UI_NODERED_PASSWORD_CRYPT}'" >>.env
 
 docker-compose up -d
 sleep 10s
-docker-compose run --rm mongodb /tmp/createNodeREDUser.sh shop
+docker-compose run --rm mongodb /tmp/createNodeREDUser.sh test
 
 echo "Your Node-RED password:${YOUR_NODERED_PASSWORD}"
