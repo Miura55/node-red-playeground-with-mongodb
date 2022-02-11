@@ -5,7 +5,7 @@ if [ ! -n "$1" ]; then
 	exit 1
 fi
 
-until mongo --quiet --host mongodb -u "root" -p "admin" --authenticationDatabase 'admin' --eval "db.serverStatus()" --quiet; do
+until mongo --quiet --host mongodb -u "root" -p "admin" --authenticationDatabase 'admin' --eval "db.serverStatus()"; do
 	echo 2>&1 "MongoDB is unavailable - sleeping"
 	sleep 1
 done
