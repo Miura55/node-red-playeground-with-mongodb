@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# set permissions
+sudo chmod -R 777 ./
 # Set the password for Node-RED
 npm install bcryptjs
 YOUR_NODERED_PASSWORD=$(openssl rand -base64 12 | fold -w 10 | head -1)
