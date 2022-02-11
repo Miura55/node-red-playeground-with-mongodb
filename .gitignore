@@ -1,0 +1,8 @@
+.env
+.npm/
+*.sock
+nodered/*.backup
+nodered/*.json
+lib/
+nodered/node_modules/
+mongodb/db/
